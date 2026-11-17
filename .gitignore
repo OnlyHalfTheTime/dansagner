@@ -1,0 +1,10 @@
+# Hugo build output
+public/
+resources/_gen/
+.hugo_build.lock
+
+# Obsidian vault config (per-machine)
+content/.obsidian/
+
+# Obsidian drafts: excluded from the build by module.toml, but keep them out of the public repo too
+content/drafts/

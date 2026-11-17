@@ -1,0 +1,26 @@
+disabled = false
+locale = "en"
+label = "English"
+weight = 1
+title = "Dan Sagner"
+
+[params]
+  displayName = "EN"
+  isoCode = "en"
+  rtl = false
+  dateFormat = "2 January 2006"
+  # logo = "img/logo.png"
+  # secondaryLogo = "img/secondary-logo.png"
+  description = "Systems administrator. Homelabber. Writer."
+  copyright = "© Dan Sagner"
+
+[params.author]
+  name = "Dan Sagner"
+  image = "img/avatar.png"
+  headline = "Systems administrator in Massachusetts"
+  bio = "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+  links = [
+    { github = "https://github.com/username" },
+    { linkedin = "https://linkedin.com/in/username" },
+    { email = "mailto:hello@dansagner.com" },
+  ]

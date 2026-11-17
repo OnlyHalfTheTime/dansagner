@@ -1,0 +1,6 @@
+# Obsidian vault lives in content/ — keep its config, templates and drafts out of the build
+[[mounts]]
+source = 'content'
+target = 'content'
+files = ['! .obsidian/**', '! _templates/**', '! drafts/**']
+

@@ -1,0 +1,21 @@
+[[main]]
+  name = "Blog"
+  pageRef = "posts"
+  weight = 10
+[[main]]
+  name = "Projects"
+  pageRef = "projects"
+  weight = 20
+[[main]]
+  name = "Media"
+  pageRef = "media"
+  weight = 30
+[[main]]
+  name = "CV"
+  pageRef = "cv"
+  weight = 40
+
+[[footer]]
+  name = "Tags"
+  pageRef = "tags"
+  weight = 10

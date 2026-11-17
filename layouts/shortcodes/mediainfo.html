@@ -1,0 +1,33 @@
+{{- /* Media metadata lines from front matter. Shown: creator fields, rating, status (if not finished),
+  fiction, genre, platform, network, year, runtime, seasons, hours, watched date.
+  Stored but not displayed (yet): recommended_by, isbn, imdb, format, narrator, re-counts, started/finished, series. */ -}}
+{{- $p := .Page.Params -}}
+{{- $main := slice -}}
+{{- range $key, $label := dict "book_author" "by" "director" "directed by" "creator" "created by" "developer" "developed by" "host" "hosted by" -}}
+  {{- with index $p $key -}}
+    {{- $v := "" -}}
+    {{- if reflect.IsSlice . }}{{ $v = delimit . ", " }}{{ else }}{{ $v = string . }}{{ end -}}
+    {{- $main = $main | append (printf "%s %s" $label $v) -}}
+  {{- end -}}
+{{- end -}}
+{{- with $p.rating -}}
+  {{- $r := int . -}}
+  {{- $main = $main | append (printf "%s%s" (strings.Repeat $r "★") (strings.Repeat (sub 5 $r) "☆")) -}}
+{{- end -}}
+{{- $meta := slice -}}
+{{- with $p.status }}{{ if ne (lower .) "finished" }}{{ $meta = $meta | append (strings.FirstUpper .) }}{{ end }}{{ end -}}
+{{- if isset $p "fiction" }}{{ $meta = $meta | append (cond (eq $p.fiction true) "Fiction" "Non-fiction") }}{{ end -}}
+{{- range slice "genre" "platform" -}}
+  {{- with index $p . }}{{ if reflect.IsSlice . }}{{ $meta = $meta | append (delimit . ", ") }}{{ else }}{{ $meta = $meta | append (string .) }}{{ end }}{{ end -}}
+{{- end -}}
+{{- with $p.network }}{{ $meta = $meta | append . }}{{ end -}}
+{{- with $p.year }}{{ $meta = $meta | append (string .) }}{{ end -}}
+{{- with $p.runtime -}}
+  {{- $m := int . -}}
+  {{- $meta = $meta | append (cond (ge $m 60) (printf "%dh %02dm" (div $m 60) (mod $m 60)) (printf "%dm" $m)) -}}
+{{- end -}}
+{{- with $p.seasons_watched }}{{ $meta = $meta | append (printf "%v season%s watched" . (cond (eq (int .) 1) "" "s")) }}{{ end -}}
+{{- with $p.hours }}{{ $meta = $meta | append (printf "%v hrs" .) }}{{ end -}}
+{{- with $p.watched }}{{ $meta = $meta | append (printf "watched %s" (time.Format "2 January 2006" .)) }}{{ end -}}
+{{- with $main }}<p class="text-lg !mb-1"><strong>{{ delimit . " · " }}</strong></p>{{ end -}}
+{{- with $meta }}<p class="text-neutral-500 dark:text-neutral-400 !mt-0">{{ delimit . " · " }}</p>{{ end -}}
