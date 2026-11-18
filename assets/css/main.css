@@ -38,7 +38,7 @@ a:hover { text-decoration-thickness: 2px; }
 img { max-width: 100%; height: auto; }
 h1, h2, h3 { line-height: 1.2; font-weight: 700; }
 code, pre, kbd { font-family: var(--mono); font-size: .9em; }
-.wrap { max-width: var(--max); margin: 0 auto; padding: 0 1.25rem; }
+.wrap { width: 100%; max-width: var(--max); margin: 0 auto; padding: 0 1.25rem; }
 .skip { position: absolute; left: -999px; }
 .skip:focus { left: 1rem; top: 1rem; background: var(--surface); padding: .5rem 1rem; z-index: 10; }
 .label {
@@ -179,3 +179,79 @@ code, pre, kbd { font-family: var(--mono); font-size: .9em; }
 .sr-title { font-weight: 600; }
 .sr-meta { font: 400 .75rem/1.5 var(--mono); color: var(--muted); }
 .sr-summary { font-size: .9rem; color: var(--muted); display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; overflow: hidden; }
+
+/* ---------- bookcase (media/books) ---------- */
+.bookcase-scroll {
+  /* break out of the 46rem text column, centered; scroll sideways when the screen is narrower than the case */
+  width: min(calc(100vw - 2rem), 62rem);
+  margin-inline: calc(50% - min(calc(50vw - 1rem), 31rem));
+  overflow-x: auto; overscroll-behavior-x: contain;
+  padding-bottom: .5rem;
+}
+.bookcase-scroll:focus-visible { outline-offset: 6px; }
+.bookcase {
+  --book-gap: 3px;
+  width: max-content; margin: 0 auto;
+  background: #17191a;                    /* back panel */
+  border: 12px solid var(--art);          /* sides */
+  border-top-width: 16px;                 /* top cap */
+  border-bottom-width: 22px;              /* plinth */
+  border-radius: 6px;
+  position: relative;
+}
+.bookcase::after {                         /* feet */
+  content: ""; position: absolute; left: -12px; right: -12px; bottom: -32px; height: 10px;
+  background: linear-gradient(var(--art), var(--art)) left 6px top / 18px 100% no-repeat,
+              linear-gradient(var(--art), var(--art)) right 6px top / 18px 100% no-repeat;
+}
+.shelf {
+  display: flex; align-items: flex-end; gap: var(--book-gap);
+  min-width: calc(var(--per-shelf) * 36px + 28px);  /* even a 1-book shelf is full width */
+  height: 236px; padding: 0 14px;
+  border-bottom: 10px solid var(--art);   /* plank */
+}
+.shelf:last-child { border-bottom: 0; }   /* plinth is the last plank */
+.book {
+  flex: none; width: var(--w); height: var(--h);
+  display: flex; align-items: center; justify-content: center;
+  color: #fff; text-decoration: none;
+  border-radius: 3px 3px 2px 2px;
+  background:
+    linear-gradient(rgb(255 255 255 / .3), rgb(255 255 255 / .3)) center top 9px / 100% 2px no-repeat,
+    linear-gradient(rgb(255 255 255 / .3), rgb(255 255 255 / .3)) center top 13px / 100% 2px no-repeat,
+    linear-gradient(rgb(255 255 255 / .3), rgb(255 255 255 / .3)) center bottom 10px / 100% 2px no-repeat,
+    var(--c);
+  box-shadow: inset 3px 0 0 rgb(255 255 255 / .12), inset -3px 0 0 rgb(0 0 0 / .2);
+  transition: transform .15s ease;
+}
+.book:hover, .book:focus-visible { transform: translateY(-8px); }
+.book:focus-visible { outline: 2px solid #fff; outline-offset: 2px; }
+.spine-title {
+  writing-mode: vertical-rl;               /* reads top-to-bottom, like US spines */
+  font: 600 12.5px/1.15 var(--sans); letter-spacing: .02em;
+  max-height: calc(var(--h) - 36px); max-width: calc(var(--w) - 8px);
+  overflow: hidden; white-space: nowrap; text-overflow: ellipsis;
+  text-shadow: 0 1px 1px rgb(0 0 0 / .25);
+}
+.book.long .spine-title { white-space: normal; font-size: 11px; line-height: 1.1; text-align: center; }
+.bookcase-count { text-align: center; margin: 2.75rem 0 0; font: 400 .8rem/1 var(--mono); color: var(--muted); }
+
+/* ---------- favorite quote (front matter `quote:`) ---------- */
+.article { position: relative; }
+.side-quote { margin: 0 0 2rem; }
+.side-quote blockquote {
+  margin: 0; padding: .2rem 0 .2rem 1.25rem;
+  border-left: 4px solid var(--accent);
+  font-style: italic; font-size: 1.35rem; line-height: 1.4; color: var(--text);
+}
+.side-quote p { margin: 0; }
+.side-quote footer { margin-top: .6rem; font-style: normal; font-size: .9rem; color: var(--muted); }
+@media (min-width: 84rem) {
+  /* out in the right margin, level with the header */
+  .side-quote {
+    position: absolute; top: 1.5rem; left: calc(100% + 3rem);
+    width: min(22rem, calc((100vw - var(--max)) / 2 - 4.5rem));
+    margin: 0;
+  }
+  .side-quote blockquote { font-size: 1.6rem; }
+}

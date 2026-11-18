@@ -1,0 +1,13 @@
+{{- /* Favorite quote from front matter: `quote:` (required), `quote_by:` (optional).
+  Wide screens: floats in the right margin beside the header. Narrow: sits under the header. */ -}}
+{{- with .Params.quote -}}
+  {{- $q := strings.Trim (strings.TrimSpace .) "\"“”" -}}
+  <aside class="side-quote" aria-label="Favorite quote">
+    <blockquote>
+      <p>“{{ $.RenderString $q }}”</p>
+      {{- with $.Params.quote_by }}
+      <footer>— {{ . }}</footer>
+      {{- end }}
+    </blockquote>
+  </aside>
+{{- end -}}

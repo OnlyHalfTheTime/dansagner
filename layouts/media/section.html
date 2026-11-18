@@ -26,8 +26,10 @@
       {{ end }}
     {{ end }}
   </nav>
+{{ else if eq .Path "/media/books" }}
+  {{ partial "bookcase.html" . }}
 {{ else }}
-  {{- /* Placeholder until the bookshelf / TV Guide designs land. */ -}}
+  {{- /* Placeholder until the TV Guide design lands. */ -}}
   <ul class="entry-list media-list">
     {{ range .Pages.ByDate.Reverse }}
       <li>

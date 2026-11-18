@@ -10,11 +10,14 @@ genre: []
 series: []
 series_order: 
 isbn: ""
+pages: 
 format: ""
 narrator: ""
 rereads: 0
 recommended_by: []
 rating: 
+quote: ""
+quote_by: ""
 featureimage: ""
 tags: [books]
 draft: false

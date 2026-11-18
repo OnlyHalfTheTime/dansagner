@@ -9,6 +9,8 @@ genre: []
 link: ""
 recommended_by: []
 rating: 
+quote: ""
+quote_by: ""
 featureimage: ""
 tags: [podcasts]
 draft: false

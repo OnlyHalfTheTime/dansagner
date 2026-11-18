@@ -15,6 +15,8 @@ RottenAud:
 rewatches: 0
 recommended_by: []
 rating: 
+quote: ""
+quote_by: ""
 featureimage: ""
 tags: [tv]
 draft: false

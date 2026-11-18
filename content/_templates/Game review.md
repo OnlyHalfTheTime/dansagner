@@ -13,6 +13,8 @@ completion: ""
 replays: 0
 recommended_by: []
 rating: 
+quote: ""
+quote_by: ""
 featureimage: ""
 tags: [games]
 draft: false

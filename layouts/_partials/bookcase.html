@@ -1,0 +1,60 @@
+{{- /*
+  Bookcase built at build time from the books section (context: the section page).
+  - Order: date finished (oldest first), then books with no finished date, by title.
+  - 20 books per shelf; a new shelf starts at book 21, 41, ... (no filler books).
+  - Spine color comes from a hash of the title: looks random, never changes between builds.
+    Color range: #5c7a1e → #1f7a31.
+  - Thickness follows `pages:` (26–58px); height grows slightly with pages. Books without
+    a page count get hash-based sizes.
+*/ -}}
+{{- $perShelf := 20 -}}
+{{- $dated := slice -}}
+{{- $undated := slice -}}
+{{- range where .RegularPages "Title" "!=" "" -}}
+  {{- if .Params.finished }}{{ $dated = $dated | append . }}{{ else }}{{ $undated = $undated | append . }}{{ end -}}
+{{- end -}}
+{{- $books := slice -}}
+{{- range sort $dated "Params.finished" "asc" }}{{ $books = $books | append . }}{{ end -}}
+{{- range sort $undated "Title" "asc" }}{{ $books = $books | append . }}{{ end -}}
+{{- $n := len $books -}}
+
+{{- if $n -}}
+<div class="bookcase-scroll" tabindex="0" role="region" aria-label="Bookcase, scroll sideways on small screens">
+  <div class="bookcase" style="--per-shelf: {{ $perShelf }}">
+    {{- range $start := seq 0 $perShelf (sub $n 1) }}
+      <div class="shelf" role="list">
+        {{- range first $perShelf (after $start $books) }}
+          {{- $h := hash.FNV32a .Title -}}
+          {{- $t := div (float (mod $h 1000)) 999.0 -}}
+          {{- $color := printf "#%02x%02x%02x" (int (math.Round (add 92.0 (mul $t -61.0)))) 122 (int (math.Round (add 30.0 (mul $t 19.0)))) -}}
+          {{- $len := len .Title -}}
+          {{- $pages := int (.Params.pages | default 0) -}}
+          {{- $w := 0 -}}{{- $ht := 0 -}}
+          {{- if gt $pages 0 -}}
+            {{- $w = int (math.Round (math.Max 26 (math.Min 58 (add 22 (mul $pages 0.033))))) -}}
+            {{- $ht = add 150 (int (math.Min 28 (div $pages 40))) (mod (div $h 9000) 8) -}}
+          {{- else -}}
+            {{- $w = add 30 (mod (div $h 1000) 9) -}}
+            {{- $ht = add 150 (mod (div $h 9000) 28) -}}
+          {{- end -}}
+          {{- /* titles over ~18 chars wrap to two lines: need >=32px of spine */ -}}
+          {{- $long := gt $len 18 -}}
+          {{- if $long }}{{ $w = math.Max $w 32 | int }}{{ end -}}
+          {{- if gt $len 40 }}{{ $ht = add $ht (int (math.Min 24 (sub $len 40))) }}{{ end -}}
+          {{- $label := .Title -}}
+          {{- with .Params.book_author }}{{ $label = printf "%s by %s" $label (cond (reflect.IsSlice .) (delimit . ", ") .) }}{{ end -}}
+          {{- with .Params.rating }}{{ $label = printf "%s, rated %v of 5" $label . }}{{ end }}
+          <a class="book{{ if $long }} long{{ end }}" role="listitem" href="{{ .RelPermalink }}"
+             style="--c: {{ $color }}; --w: {{ $w }}px; --h: {{ $ht }}px"
+             title="{{ $label }}" aria-label="{{ $label }}">
+            <span class="spine-title">{{ .Title }}</span>
+          </a>
+        {{- end }}
+      </div>
+    {{- end }}
+  </div>
+</div>
+<p class="bookcase-count">{{ $n }} book{{ if ne $n 1 }}s{{ end }} · {{ math.Ceil (div (float $n) $perShelf) }} {{ if gt $n $perShelf }}shelves{{ else }}shelf{{ end }}</p>
+{{- else -}}
+<p class="page-desc">No books yet.</p>
+{{- end -}}

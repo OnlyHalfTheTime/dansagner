@@ -13,6 +13,7 @@ series:
   - Mistborn
 series_order: 1
 isbn: "9780765350381"
+pages: 669
 format: Audiobook
 narrator: Michael Kramer
 rereads: 1
@@ -23,7 +24,9 @@ featureimage: https://covers.openlibrary.org/b/id/14811583-L.jpg
 tags:
   - books
 draft: false
+quote: You don't stop loving someone just because they hurt you... It would certainly make things easier if you did.
 ---
+### What if *Harry Potter* was good?
 
 This is the book that started my obsession and completionist jaunt down the rabbit hole that is Sanderson's Cosmere.  My brother does this.  He finds something and says "Hey, you might like this." then we cut to months later and see me obsession over it still while he's lost interest.  Satisfactory, Deep Rock Galactic, now the Cosmere.  It's a trade-off.  On the one hand, I'd rather we dork out together, but on the other hand, he has introduced me to some of my favorite entertainment, and I've learned to value his recommendations.  So, thanks, Bill.
 
