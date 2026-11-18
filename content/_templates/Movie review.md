@@ -8,6 +8,8 @@ genre: []
 year: 
 runtime: 
 imdb: ""
+RottenCrit: 
+RottenAud: 
 format: ""
 rewatches: 0
 recommended_by: []

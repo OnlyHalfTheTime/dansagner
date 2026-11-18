@@ -2,7 +2,7 @@ disabled = false
 locale = "en"
 label = "English"
 weight = 1
-title = "Dan Sagner"
+title = "Daniel Sagner"
 
 [params]
   displayName = "EN"
@@ -11,16 +11,15 @@ title = "Dan Sagner"
   dateFormat = "2 January 2006"
   # logo = "img/logo.png"
   # secondaryLogo = "img/secondary-logo.png"
-  description = "Systems administrator. Homelabber. Writer."
-  copyright = "© Dan Sagner"
+  description = "Systems administrator. Homelabber."
+  copyright = "© Daniel Sagner"
 
 [params.author]
-  name = "Dan Sagner"
-  image = "img/avatar.png"
-  headline = "Systems administrator in Massachusetts"
-  bio = "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+  name = "Daniel Sagner"
+  # Gravatar: fetched at build time by Hugo, served locally (no runtime hotlink). Also drives favicons via layouts/partials/favicons.html
+  image = "https://gravatar.com/avatar/6160777878f10b4d80d68b661407e61453bf7ba9108baa39264deea81e18c6ef?s=1024&d=404"
+  headline = "Systems Administrator · Massachusetts"
+  bio = "15+ years running enterprise infrastructure end-to-end: virtualization, networking, backups, and the people who depend on them."
   links = [
-    { github = "https://github.com/username" },
-    { linkedin = "https://linkedin.com/in/username" },
-    { email = "mailto:hello@dansagner.com" },
+    { linkedin = "https://www.linkedin.com/in/dansagner/" },
   ]

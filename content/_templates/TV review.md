@@ -10,6 +10,8 @@ genre: []
 year: 
 seasons_watched: 
 imdb: ""
+RottenCrit: 
+RottenAud: 
 rewatches: 0
 recommended_by: []
 rating: 
