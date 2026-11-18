@@ -16,11 +16,7 @@ rereads: 0
 recommended_by: []
 rating: 
 featureimage: ""
-showHero: true
-heroStyle: basic
 tags: [books]
 draft: false
 ---
-
-{{< mediainfo >}}
 

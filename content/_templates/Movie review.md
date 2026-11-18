@@ -15,11 +15,7 @@ rewatches: 0
 recommended_by: []
 rating: 
 featureimage: ""
-showHero: true
-heroStyle: basic
 tags: [movies]
 draft: false
 ---
-
-{{< mediainfo >}}
 

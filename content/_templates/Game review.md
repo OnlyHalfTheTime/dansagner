@@ -14,11 +14,7 @@ replays: 0
 recommended_by: []
 rating: 
 featureimage: ""
-showHero: true
-heroStyle: basic
 tags: [games]
 draft: false
 ---
-
-{{< mediainfo >}}
 

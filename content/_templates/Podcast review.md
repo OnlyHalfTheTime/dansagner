@@ -10,11 +10,7 @@ link: ""
 recommended_by: []
 rating: 
 featureimage: ""
-showHero: true
-heroStyle: basic
 tags: [podcasts]
 draft: false
 ---
-
-{{< mediainfo >}}
 
