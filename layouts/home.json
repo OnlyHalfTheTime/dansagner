@@ -1,0 +1,23 @@
+{{- /* Search index consumed by static/js/search.js */ -}}
+{{- $labels := dict "posts" "Blog" "projects" "Project" "cv" "CV" -}}
+{{- $items := slice -}}
+{{- range site.RegularPages -}}
+  {{- $label := index $labels .Section -}}
+  {{- if eq .Section "media" -}}{{- $label = .Parent.Title -}}{{- end -}}
+  {{- $people := slice -}}
+  {{- $p := .Params -}}
+  {{- range slice "book_author" "director" "creator" "developer" "host" -}}
+    {{- with index $p . -}}
+      {{- if reflect.IsSlice . }}{{ $people = $people | append . }}{{ else }}{{ $people = $people | append (string .) }}{{ end -}}
+    {{- end -}}
+  {{- end -}}
+  {{- $items = $items | append (dict
+      "title"   .Title
+      "url"     .RelPermalink
+      "section" ($label | default (.Section | humanize))
+      "people"  (delimit $people ", ")
+      "tags"    (delimit (.Params.tags | default slice) " ")
+      "summary" (.Summary | plainify | htmlUnescape | strings.TrimSpace | truncate 160)
+      "content" (.Plain | htmlUnescape | strings.TrimSpace | truncate 4000)) -}}
+{{- end -}}
+{{- $items | jsonify -}}

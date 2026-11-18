@@ -1,0 +1,16 @@
+{{- /* Returns params.author.image as a resource (remote URL or assets/ path), or nil. Warns instead of failing the build. */ -}}
+{{- $img := "" -}}
+{{- with site.Params.author.image -}}
+  {{- if or (strings.HasPrefix . "http:") (strings.HasPrefix . "https:") -}}
+    {{- with try (resources.GetRemote .) -}}
+      {{- with .Err -}}
+        {{- warnf "author image: could not fetch %s" . -}}
+      {{- else with .Value -}}
+        {{- $img = . -}}
+      {{- end -}}
+    {{- end -}}
+  {{- else -}}
+    {{- $img = resources.Get . -}}
+  {{- end -}}
+{{- end -}}
+{{- return $img -}}

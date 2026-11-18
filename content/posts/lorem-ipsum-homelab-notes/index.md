@@ -2,7 +2,6 @@
 title: "Lorem Ipsum: Homelab Notes"
 date: 2026-11-10
 tags: ['homelab', 'linux']
-summary: "Curabitur pretium tincidunt lacus. Nulla gravida orci a odio. Nullam varius, turpis et com..."
 ---
 
 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.

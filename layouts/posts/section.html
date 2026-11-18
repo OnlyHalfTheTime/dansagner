@@ -1,0 +1,16 @@
+{{ define "main" }}
+<header class="page-header">
+  <h1>{{ .Title }}</h1>
+  {{ with .Description }}<p class="page-desc">{{ . }}</p>{{ end }}
+</header>
+<ul class="entry-list summaries">
+  {{ range .Pages.ByDate.Reverse }}
+    <li>
+      <a class="entry-title" href="{{ .RelPermalink }}">{{ .Title }}</a>
+      <span class="entry-meta"><time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "Jan 2, 2006" }}</time></span>
+      {{- /* First two lines of the post; CSS clamps to 2 lines and adds the ellipsis. */}}
+      <p class="excerpt clamp-2">{{ .Plain | truncate 400 "" }}</p>
+    </li>
+  {{ end }}
+</ul>
+{{ end }}

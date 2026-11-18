@@ -1,0 +1,16 @@
+{{ define "main" }}
+<article class="article{{ with .Section }} article-{{ . }}{{ end }}">
+  <header class="article-header">
+    <h1>{{ .Title }}</h1>
+    {{ if in (slice "posts" "projects") .Section }}
+      <p class="entry-meta">
+        <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "January 2, 2006" }}</time>
+        {{ with .GetTerms "tags" }} · {{ range $i, $t := . }}{{ if $i }}, {{ end }}<a href="{{ $t.RelPermalink }}">#{{ $t.LinkTitle }}</a>{{ end }}{{ end }}
+      </p>
+    {{ end }}
+  </header>
+  <div class="prose">
+    {{ .Content }}
+  </div>
+</article>
+{{ end }}

@@ -1,0 +1,31 @@
+<header class="site-header">
+  <div class="wrap header-inner">
+    <a class="brand" href="{{ "/" | relURL }}">{{ site.Title }}</a>
+    <nav aria-label="Main">
+      <ul>
+        {{ $current := . }}
+        {{ range site.Menus.main }}
+          {{ $active := or ($current.IsMenuCurrent "main" .) ($current.HasMenuCurrent "main" .) }}
+          {{ with .Page }}{{ if or (eq $current .) ($current.IsDescendant .) }}{{ $active = true }}{{ end }}{{ end }}
+          <li><a href="{{ .URL }}"{{ if $active }} aria-current="page"{{ end }}>{{ .Name }}</a></li>
+        {{ end }}
+        <li>
+          <button class="search-btn" type="button" data-search-open aria-label="Search (Ctrl+K)" title="Search (Ctrl+K or /)">
+            <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M15.5 15.5 21 21"/></svg>
+          </button>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<dialog id="search" class="search-dialog" aria-label="Search"
+        data-index="{{ "index.json" | relURL }}" data-fuse="{{ "js/fuse.basic.min.mjs" | relURL }}">
+  <form method="dialog" class="search-form" role="search">
+    <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M15.5 15.5 21 21"/></svg>
+    <input id="search-input" type="search" placeholder="Search posts, projects, media…" autocomplete="off" spellcheck="false" aria-describedby="search-status">
+    <kbd>esc</kbd>
+  </form>
+  <p id="search-status" class="search-status" aria-live="polite"></p>
+  <ul id="search-results" class="search-results"></ul>
+</dialog>

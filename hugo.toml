@@ -1,0 +1,69 @@
+baseURL = "https://dansagner.com/"
+locale = "en-us"
+title = "Daniel Sagner"
+enableRobotsTXT = true
+
+[params]
+  description = "Systems administrator. Homelabber."
+  [params.author]
+    name = "Daniel Sagner"
+    headline = "Systems Administrator · Massachusetts"
+    # Gravatar: Hugo fetches it at build time and serves local copies (no runtime hotlink).
+    # Also the source for the favicons (layouts/_partials/favicons.html).
+    image = "https://gravatar.com/avatar/6160777878f10b4d80d68b661407e61453bf7ba9108baa39264deea81e18c6ef?s=1024&d=404"
+    linkedin = "https://www.linkedin.com/in/dansagner/"
+
+[menus]
+  [[menus.main]]
+    name = "Blog"
+    pageRef = "/posts"
+    weight = 10
+  [[menus.main]]
+    name = "Projects"
+    pageRef = "/projects"
+    weight = 20
+  [[menus.main]]
+    name = "Media"
+    pageRef = "/media"
+    weight = 30
+  [[menus.main]]
+    name = "CV"
+    pageRef = "/cv"
+    weight = 40
+
+[taxonomies]
+  tag = "tags"
+
+[markup.goldmark.renderer]
+  unsafe = true
+
+[markup.highlight]
+  noClasses = false
+
+# Obsidian vault lives in content/ — keep its config, templates and drafts out of the build
+[[module.mounts]]
+  source = "content"
+  target = "content"
+  files = ["! .obsidian/**", "! _templates/**", "! drafts/**"]
+[[module.mounts]]
+  source = "layouts"
+  target = "layouts"
+[[module.mounts]]
+  source = "assets"
+  target = "assets"
+[[module.mounts]]
+  source = "static"
+  target = "static"
+[[module.mounts]]
+  source = "archetypes"
+  target = "archetypes"
+[[module.mounts]]
+  source = "data"
+  target = "data"
+[[module.mounts]]
+  source = "i18n"
+  target = "i18n"
+
+# home.json = search index for static/js/search.js
+[outputs]
+  home = ["HTML", "RSS", "JSON"]

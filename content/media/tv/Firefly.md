@@ -18,14 +18,10 @@ rewatches: 0
 recommended_by: []
 rating: 5
 featureimage: https://m.media-amazon.com/images/M/MV5BYzYyZWYzNzUtOWQ4Yi00Y2Q4LWJjZjgtZTllNjg2ZGM0MTcyXkEyXkFqcGc@._V1_SX600.jpg
-showHero: true
-heroStyle: basic
 tags:
   - tv
 draft: false
 ---
-
-{{< mediainfo >}}
 
 <!-- Imported from PCMN note (special: watched 2025-09-03 to 2025-10-09). -->
 

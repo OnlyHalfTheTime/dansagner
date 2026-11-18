@@ -19,7 +19,7 @@ defaults:
     shell: bash
 
 env:
-  HUGO_VERSION: 0.165.0   # matches the version Blowfish pins; bump together
+  HUGO_VERSION: 0.165.0   # keep in step with your local hugo
   TZ: America/New_York
 
 jobs:
@@ -33,10 +33,9 @@ jobs:
           sudo dpkg -i "${{ runner.temp }}/hugo.deb"
           hugo version
 
-      - name: Checkout (with theme submodule)
+      - name: Checkout
         uses: actions/checkout@v5
         with:
-          submodules: recursive
           fetch-depth: 0   # full history so .Lastmod / git info works
 
       - name: Configure Pages

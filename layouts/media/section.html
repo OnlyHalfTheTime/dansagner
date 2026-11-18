@@ -1,0 +1,40 @@
+{{- /* Handles /media/ (box grid) and its subsections /media/books/ etc. (placeholder list). */ -}}
+{{ define "main" }}
+<header class="page-header">
+  <h1>{{ .Title }}</h1>
+  {{ with .Description }}<p class="page-desc">{{ . }}</p>{{ end }}
+</header>
+
+{{ if eq .Path "/media" }}
+  {{ with .Content }}<div class="prose">{{ . }}</div>{{ end }}
+  {{ $kinds := slice
+    (dict "key" "books"    "name" "Books"    "unit" "book")
+    (dict "key" "movies"   "name" "Movies"   "unit" "movie")
+    (dict "key" "tv"       "name" "TV Shows" "unit" "show")
+    (dict "key" "podcasts" "name" "Podcasts" "unit" "podcast")
+    (dict "key" "games"    "name" "Games"    "unit" "game" "wide" true) }}
+  <nav class="grid-2 media-boxes" aria-label="Media">
+    {{ range $kinds }}
+      {{ $k := . }}
+      {{ with site.GetPage (printf "/media/%s" $k.key) }}
+        {{ $n := len .RegularPages }}
+        <a class="box art-box{{ if $k.wide }} wide{{ end }}" href="{{ .RelPermalink }}">
+          <span class="art">{{ partial (printf "art/%s.html" $k.key) }}</span>
+          <span class="box-title">{{ $k.name }}</span>
+          <span class="box-meta">{{ $n }} {{ $k.unit }}{{ if ne $n 1 }}s{{ end }}</span>
+        </a>
+      {{ end }}
+    {{ end }}
+  </nav>
+{{ else }}
+  {{- /* Placeholder until the bookshelf / TV Guide designs land. */ -}}
+  <ul class="entry-list media-list">
+    {{ range .Pages.ByDate.Reverse }}
+      <li>
+        <a class="entry-title" href="{{ .RelPermalink }}">{{ .Title }}</a>
+        {{ partial "mediainfo.html" . }}
+      </li>
+    {{ end }}
+  </ul>
+{{ end }}
+{{ end }}

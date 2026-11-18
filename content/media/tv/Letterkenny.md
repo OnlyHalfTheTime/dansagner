@@ -17,14 +17,10 @@ rewatches: 0
 recommended_by: []
 rating: 4
 featureimage: https://m.media-amazon.com/images/M/MV5BMWFjNzZjNGMtNmUxOC00MmZlLTljNjctOGUwNjdjZTQ5OGMyXkEyXkFqcGc@._V1_SX600.jpg
-showHero: true
-heroStyle: basic
 tags:
   - tv
 draft: false
 ---
-
-{{< mediainfo >}}
 
 <!-- Metadata from IMDb and Rotten Tomatoes (series-level scores). -->
 

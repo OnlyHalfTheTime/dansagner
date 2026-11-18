@@ -1,6 +1,5 @@
 ---
 title: "Movies"
-cardView: true
 ---
 
 

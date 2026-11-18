@@ -1,4 +1,3 @@
 ---
 title: "TV"
-cardView: true
 ---

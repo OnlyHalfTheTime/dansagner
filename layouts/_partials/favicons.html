@@ -1,0 +1,19 @@
+{{- /* Favicons generated at build time from params.author.image. */ -}}
+{{- with partialCached "author-image.html" "author-image" -}}
+  {{- $f16 := .Fill "16x16 Center png" -}}
+  {{- $f32 := .Fill "32x32 Center png" -}}
+  {{- $apple := .Fill "180x180 Center png" -}}
+  {{- $a192 := .Fill "192x192 Center png" -}}
+  {{- $a512 := .Fill "512x512 Center png" -}}
+  {{- $icons := slice
+      (dict "src" $a192.RelPermalink "sizes" "192x192" "type" "image/png")
+      (dict "src" $a512.RelPermalink "sizes" "512x512" "type" "image/png") -}}
+  {{- $manifest := dict
+      "name" site.Title "short_name" site.Title "icons" $icons
+      "theme_color" "#1e2021" "background_color" "#1e2021" "display" "standalone"
+    | jsonify | resources.FromString "manifest.webmanifest" -}}
+  <link rel="apple-touch-icon" sizes="180x180" href="{{ $apple.RelPermalink }}">
+  <link rel="icon" type="image/png" sizes="32x32" href="{{ $f32.RelPermalink }}">
+  <link rel="icon" type="image/png" sizes="16x16" href="{{ $f16.RelPermalink }}">
+  <link rel="manifest" href="{{ $manifest.RelPermalink }}">
+{{- end -}}

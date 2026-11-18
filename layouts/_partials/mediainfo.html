@@ -1,7 +1,8 @@
-{{- /* Media metadata lines from front matter. Shown: creator fields, rating, status (if not finished),
-  fiction, genre, platform, network, year, runtime, seasons, hours, watched date.
+{{- /* Media metadata lines from front matter (context: the page).
+  Shown: creator fields, rating, status (if not finished), fiction, genre, platform, network, year, runtime,
+  seasons, hours, watched date.
   Stored but not displayed (yet): recommended_by, isbn, imdb, format, narrator, re-counts, started/finished, series. */ -}}
-{{- $p := .Page.Params -}}
+{{- $p := .Params -}}
 {{- $main := slice -}}
 {{- range $key, $label := dict "book_author" "by" "director" "directed by" "creator" "created by" "developer" "developed by" "host" "hosted by" -}}
   {{- with index $p $key -}}
@@ -10,9 +11,11 @@
     {{- $main = $main | append (printf "%s %s" $label $v) -}}
   {{- end -}}
 {{- end -}}
+{{- $stars := "" -}}
 {{- with $p.rating -}}
   {{- $r := int . -}}
-  {{- $main = $main | append (printf "%s%s" (strings.Repeat $r "★") (strings.Repeat (sub 5 $r) "☆")) -}}
+  {{- if or (lt $r 1) (gt $r 5) }}{{ errorf "%s: rating %v is outside 1–5" $.File.Path . }}{{ end -}}
+  {{- $stars = printf "%s%s" (strings.Repeat $r "★") (strings.Repeat (sub 5 $r) "☆") -}}
 {{- end -}}
 {{- $meta := slice -}}
 {{- with $p.status }}{{ if ne (lower .) "finished" }}{{ $meta = $meta | append (strings.FirstUpper .) }}{{ end }}{{ end -}}
@@ -29,5 +32,6 @@
 {{- with $p.seasons_watched }}{{ $meta = $meta | append (printf "%v season%s watched" . (cond (eq (int .) 1) "" "s")) }}{{ end -}}
 {{- with $p.hours }}{{ $meta = $meta | append (printf "%v hrs" .) }}{{ end -}}
 {{- with $p.watched }}{{ $meta = $meta | append (printf "watched %s" (time.Format "2 January 2006" .)) }}{{ end -}}
-{{- with $main }}<p class="text-lg !mb-1"><strong>{{ delimit . " · " }}</strong></p>{{ end -}}
-{{- with $meta }}<p class="text-neutral-500 dark:text-neutral-400 !mt-0">{{ delimit . " · " }}</p>{{ end -}}
+{{- with $stars }}<p class="media-rating" role="img" aria-label="{{ $p.rating }} out of 5">{{ . }}</p>{{ end -}}
+{{- with $main }}<p class="media-main">{{ delimit . " · " }}</p>{{ end -}}
+{{- with $meta }}<p class="media-meta">{{ delimit . " · " }}</p>{{ end -}}

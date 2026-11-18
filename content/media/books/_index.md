@@ -1,6 +1,5 @@
 ---
 title: "Books"
-cardView: true
 ---
 
 

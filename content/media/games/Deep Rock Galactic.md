@@ -17,14 +17,10 @@ replays: 0
 recommended_by: []
 rating: 5
 featureimage: https://cdn.cloudflare.steamstatic.com/steam/apps/548430/header.jpg
-showHero: true
-heroStyle: basic
 tags:
   - games
 draft: false
 ---
-
-{{< mediainfo >}}
 
 <!-- Imported from Steam (app 548430). Last played 2026-09-12. Steam release date used for year. -->
 

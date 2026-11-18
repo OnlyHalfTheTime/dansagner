@@ -1,4 +1,3 @@
 ---
 title: "Podcasts"
-cardView: true
 ---

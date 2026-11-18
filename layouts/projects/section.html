@@ -1,0 +1,15 @@
+{{ define "main" }}
+<header class="page-header">
+  <h1>{{ .Title }}</h1>
+  {{ with .Description }}<p class="page-desc">{{ . }}</p>{{ end }}
+</header>
+<ul class="entry-list summaries">
+  {{ range .Pages.ByDate.Reverse }}
+    <li>
+      <a class="entry-title" href="{{ .RelPermalink }}">{{ .Title }}</a>
+      {{- /* Uses `summary:` from front matter when set, else the start of the page. */}}
+      <p class="excerpt clamp-2">{{ .Summary | plainify }}</p>
+    </li>
+  {{ end }}
+</ul>
+{{ end }}

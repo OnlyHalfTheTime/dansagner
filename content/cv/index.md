@@ -1,16 +1,9 @@
 ---
 title: "CV"
 description: "Systems administrator with 15+ years running enterprise infrastructure end-to-end."
-showDate: false
-showReadingTime: false
-showWordCount: false
-showAuthor: false
-showTableOfContents: false
 ---
 
-{{< lead >}}
-Hands-on Systems Administrator with 15+ years managing enterprise infrastructure end-to-end: virtualization, networking, backups, and daily user support.
-{{< /lead >}}
+<p class="lead">Hands-on Systems Administrator with 15+ years managing enterprise infrastructure end-to-end: virtualization, networking, backups, and daily user support.</p>
 
 Experienced running IT as the sole administrator, reporting directly to executive leadership. Track record of cutting support tickets by 80% and building IT environments from the ground up.
 
@@ -18,36 +11,34 @@ Experienced running IT as the sole administrator, reporting directly to executiv
 
 ## Experience
 
-{{< timeline >}}
+### Senior Systems Administrator
 
-{{< timelineItem icon="code" header="Senior Systems Administrator" badge="May 2022 – Aug 2026" subheader="Penguin Solutions · Maynard, MA" >}}
-<ul>
-<li>Sole administrator for 6 VMware environments (20 hosts, 400+ VMs) supporting 500+ users across 7 sites; led full migration to Hyper-V while driving down licensing costs</li>
-<li>Built and maintained a Fibre Channel SAN fabric</li>
-<li>Owned backup infrastructure end-to-end, migrating from NetApp/Arcserve to Veeam</li>
-<li>Led a major hypervisor stack upgrade: evaluated technologies, worked directly with vendors, coordinated with Networking, Security, Engineering, and Ops</li>
-<li>Migrated phone system from legacy POTS PBX to Teams Phone</li>
-<li>Planned and executed the downsizing and physical migration of an Arizona datacenter</li>
-</ul>
-{{< /timelineItem >}}
+<p class="cv-meta">Penguin Solutions · Maynard, MA <span>May 2022 – Aug 2026</span></p>
 
-{{< timelineItem icon="code" header="Senior Systems Engineer" badge="Nov 2012 – Apr 2022" subheader="Mikrodots, Inc. (MSP) · Woburn, MA" >}}
-<ul>
-<li>Cut reactive support tickets 80%, from 2,000/month to 400/month, through scripting and root-cause fixes</li>
-<li>Advanced from Depot Technician to Senior Systems Engineer</li>
-<li>Built IT infrastructure from scratch for 3 companies: servers, AD, Exchange/O365, Group Policy, shared drives, network, and workstation deployment</li>
-<li>Supported industry LOB apps for legal, medical, construction, and engineering clients</li>
-<li>Deployed GPOs to automate new-user setup, printer deployment, and security hardening</li>
-<li>Wrote PowerShell scripts automating workstation deployment, cutting new-machine prep from ~6 hours to 30 minutes</li>
-<li>Scripted fixes for recurring issues (QuickBooks crashes, updates, out-of-office automation), saving hours weekly</li>
-</ul>
-{{< /timelineItem >}}
+- Sole administrator for 6 VMware environments (20 hosts, 400+ VMs) supporting 500+ users across 7 sites; led full migration to Hyper-V while driving down licensing costs
+- Built and maintained a Fibre Channel SAN fabric
+- Owned backup infrastructure end-to-end, migrating from NetApp/Arcserve to Veeam
+- Led a major hypervisor stack upgrade: evaluated technologies, worked directly with vendors, coordinated with Networking, Security, Engineering, and Ops
+- Migrated phone system from legacy POTS PBX to Teams Phone
+- Planned and executed the downsizing and physical migration of an Arizona datacenter
 
-{{< timelineItem icon="code" header="Certified Master Technician" badge="2011 – 2012" subheader="Staples · Burlington, MA" >}}
+### Senior Systems Engineer
+
+<p class="cv-meta">Mikrodots, Inc. (MSP) · Woburn, MA <span>Nov 2012 – Apr 2022</span></p>
+
+- Cut reactive support tickets 80%, from 2,000/month to 400/month, through scripting and root-cause fixes
+- Advanced from Depot Technician to Senior Systems Engineer
+- Built IT infrastructure from scratch for 3 companies: servers, AD, Exchange/O365, Group Policy, shared drives, network, and workstation deployment
+- Supported industry LOB apps for legal, medical, construction, and engineering clients
+- Deployed GPOs to automate new-user setup, printer deployment, and security hardening
+- Wrote PowerShell scripts automating workstation deployment, cutting new-machine prep from ~6 hours to 30 minutes
+- Scripted fixes for recurring issues (QuickBooks crashes, updates, out-of-office automation), saving hours weekly
+
+### Certified Master Technician
+
+<p class="cv-meta">Staples · Burlington, MA <span>2011 – 2012</span></p>
+
 On-site network setup and hardware service.
-{{< /timelineItem >}}
-
-{{< /timeline >}}
 
 ## Skills
 
@@ -64,12 +55,13 @@ On-site network setup and hardware service.
 
 ## Education & Certification
 
-{{< timeline >}}
-{{< timelineItem icon="graduation-cap" header="Bachelor of Philosophy, Communications and Critical Thinking" badge="Minor: English" subheader="University of Massachusetts Lowell · GPA 3.3 · Dean's List" >}}
-{{< /timelineItem >}}
-{{< timelineItem icon="shield" header="CompTIA Server+" badge="2015" subheader="CompTIA" >}}
-{{< /timelineItem >}}
-{{< /timeline >}}
+### Bachelor of Philosophy, Communications and Critical Thinking
+
+<p class="cv-meta">University of Massachusetts Lowell · GPA 3.3 · Dean's List <span>Minor: English</span></p>
+
+### CompTIA Server+
+
+<p class="cv-meta">CompTIA <span>2015</span></p>
 
 ## Homelab
 
@@ -81,4 +73,5 @@ More in [Projects](/projects/).
 
 ## Philosophy
 
-> Protect the data first: backups, backups, backups. Fix the people problem, then the technology.
+> Protect the data first: backups, backups, backups. Fix the work-stoppage problem, then the technology.
+> Make it easy for people to do the right thing.

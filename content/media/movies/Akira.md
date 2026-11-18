@@ -19,14 +19,10 @@ recommended_by:
   - Sylvanus
 rating: 2
 featureimage: https://m.media-amazon.com/images/M/MV5BNzlhZGRmZGEtM2ZjNC00MWRmLTk0MDctYzU1NzAzODIxYzEyXkEyXkFqcGc@._V1_SX600.jpg
-showHero: true
-heroStyle: basic
 tags:
   - movies
 draft: false
 ---
-
-{{< mediainfo >}}
 
 <!-- Imported from PCMN (People's Choice Movie Night) note. -->
 
