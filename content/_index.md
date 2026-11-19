@@ -2,4 +2,4 @@
 title: "Dan Sagner"
 ---
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+The personal website of Daniel Sagner.  Here find my CV, media about which I have opined, and some projects that I have completed.
