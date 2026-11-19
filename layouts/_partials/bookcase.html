@@ -3,11 +3,21 @@
   - Order: date finished (oldest first), then books with no finished date, by title.
   - 20 books per shelf; a new shelf starts at book 21, 41, ... (no filler books).
   - Spine color comes from a hash of the title: looks random, never changes between builds.
-    Color range: #5c7a1e → #1f7a31.
+    One of the palette colors below, blended up to 12% toward another palette color and
+    lightened/darkened up to 8%. Title text is white or near-black, whichever contrasts more.
   - Thickness follows `pages:` (26–58px); height grows slightly with pages. Books without
     a page count get hash-based sizes.
 */ -}}
 {{- $perShelf := 20 -}}
+{{- /* palette: beige #e9d2a8, sage #a0b099, olive #666f50 (sample #717b59, darkened for white text), mauve #8f5d5c, rose #cf8383, tan #c8a58d */ -}}
+{{- $palette := slice
+    (slice 233 210 168)
+    (slice 160 176 153)
+    (slice 102 111  80)
+    (slice 143  93  92)
+    (slice 207 131 131)
+    (slice 200 165 141) -}}
+{{- $np := len $palette -}}
 {{- $dated := slice -}}
 {{- $undated := slice -}}
 {{- range where .RegularPages "Title" "!=" "" -}}
@@ -25,8 +35,34 @@
       <div class="shelf" role="list">
         {{- range first $perShelf (after $start $books) }}
           {{- $h := hash.FNV32a .Title -}}
-          {{- $t := div (float (mod $h 1000)) 999.0 -}}
-          {{- $color := printf "#%02x%02x%02x" (int (math.Round (add 92.0 (mul $t -61.0)))) 122 (int (math.Round (add 30.0 (mul $t 19.0)))) -}}
+          {{- $bi := mod $h $np -}}
+          {{- $base := index $palette $bi -}}
+          {{- $alt := index $palette (mod (add $bi 1 (mod (div $h $np) (sub $np 1))) $np) -}}
+          {{- /* $s: blend 0–12% toward $alt; $l: lightness −8%…+8% */ -}}
+          {{- $s := mul (float (mod (div $h 36) 100)) 0.0012 -}}
+          {{- $l := sub (mul (float (mod (div $h 3600) 100)) 0.0016) 0.08 -}}
+          {{- $rgb := slice -}}
+          {{- $lum := 0.0 -}}
+          {{- range $i, $w := slice 0.2126 0.7152 0.0722 -}}
+            {{- $c := add (float (index $base $i)) (mul (sub (index $alt $i) (index $base $i)) $s) -}}
+            {{- if gt $l 0.0 }}{{ $c = add $c (mul (sub 255.0 $c) $l) }}{{ else }}{{ $c = mul $c (add 1.0 $l) }}{{ end -}}
+            {{- $c = math.Round (math.Max 0 (math.Min 255 $c)) -}}
+            {{- $rgb = $rgb | append (int $c) -}}
+            {{- $v := div $c 255.0 -}}
+            {{- $lin := cond (le $v 0.04045) (div $v 12.92) (math.Pow (div (add $v 0.055) 1.055) 2.4) -}}
+            {{- $lum = add $lum (mul $w $lin) -}}
+          {{- end -}}
+          {{- /* contrast vs white (L=1) and vs dark text #1e2021 (L≈0.0145) */ -}}
+          {{- $cWhite := div 1.05 (add $lum 0.05) -}}
+          {{- $cDark := div (add $lum 0.05) 0.0645 -}}
+          {{- $light := gt $cDark $cWhite -}}
+          {{- if lt (math.Max $cWhite $cDark) 4.5 -}}
+            {{- /* mid-brightness spine: darken just enough for white text (target L 0.175 → ~4.7:1) */ -}}
+            {{- $k := math.Pow (div 0.175 $lum) 0.4545 -}}
+            {{- $rgb = slice (int (math.Round (mul (index $rgb 0) $k))) (int (math.Round (mul (index $rgb 1) $k))) (int (math.Round (mul (index $rgb 2) $k))) -}}
+            {{- $light = false -}}
+          {{- end -}}
+          {{- $color := printf "#%02x%02x%02x" (index $rgb 0) (index $rgb 1) (index $rgb 2) -}}
           {{- $len := len .Title -}}
           {{- $pages := int (.Params.pages | default 0) -}}
           {{- $w := 0 -}}{{- $ht := 0 -}}
@@ -37,14 +73,14 @@
             {{- $w = add 30 (mod (div $h 1000) 9) -}}
             {{- $ht = add 150 (mod (div $h 9000) 28) -}}
           {{- end -}}
-          {{- /* titles over ~18 chars wrap to two lines: need >=32px of spine */ -}}
-          {{- $long := gt $len 18 -}}
+          {{- /* titles over 15 chars wrap to two lines: need >=32px of spine */ -}}
+          {{- $long := gt $len 15 -}}
           {{- if $long }}{{ $w = math.Max $w 32 | int }}{{ end -}}
           {{- if gt $len 40 }}{{ $ht = add $ht (int (math.Min 24 (sub $len 40))) }}{{ end -}}
           {{- $label := .Title -}}
           {{- with .Params.book_author }}{{ $label = printf "%s by %s" $label (cond (reflect.IsSlice .) (delimit . ", ") .) }}{{ end -}}
           {{- with .Params.rating }}{{ $label = printf "%s, rated %v of 5" $label . }}{{ end }}
-          <a class="book{{ if $long }} long{{ end }}" role="listitem" href="{{ .RelPermalink }}"
+          <a class="book{{ if $long }} long{{ end }}{{ if $light }} light{{ end }}" role="listitem" href="{{ .RelPermalink }}"
              style="--c: {{ $color }}; --w: {{ $w }}px; --h: {{ $ht }}px"
              title="{{ $label }}" aria-label="{{ $label }}">
             <span class="spine-title">{{ .Title }}</span>

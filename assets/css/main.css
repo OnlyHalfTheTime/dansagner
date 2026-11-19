@@ -185,8 +185,9 @@ code, pre, kbd { font-family: var(--mono); font-size: .9em; }
   /* break out of the 46rem text column, centered; scroll sideways when the screen is narrower than the case */
   width: min(calc(100vw - 2rem), 62rem);
   margin-inline: calc(50% - min(calc(50vw - 1rem), 31rem));
-  overflow-x: auto; overscroll-behavior-x: contain;
-  padding-bottom: .5rem;
+  overflow-x: auto; overflow-y: hidden;   /* overflow-x:auto alone makes y "auto" too */
+  overscroll-behavior-x: contain;
+  padding-bottom: 14px;                   /* room for the feet (10px below the case) */
 }
 .bookcase-scroll:focus-visible { outline-offset: 6px; }
 .bookcase {
@@ -212,14 +213,15 @@ code, pre, kbd { font-family: var(--mono); font-size: .9em; }
 }
 .shelf:last-child { border-bottom: 0; }   /* plinth is the last plank */
 .book {
+  --band: rgb(255 255 255 / .3);
   flex: none; width: var(--w); height: var(--h);
   display: flex; align-items: center; justify-content: center;
   color: #fff; text-decoration: none;
   border-radius: 3px 3px 2px 2px;
   background:
-    linear-gradient(rgb(255 255 255 / .3), rgb(255 255 255 / .3)) center top 9px / 100% 2px no-repeat,
-    linear-gradient(rgb(255 255 255 / .3), rgb(255 255 255 / .3)) center top 13px / 100% 2px no-repeat,
-    linear-gradient(rgb(255 255 255 / .3), rgb(255 255 255 / .3)) center bottom 10px / 100% 2px no-repeat,
+    linear-gradient(var(--band), var(--band)) center top 9px / 100% 2px no-repeat,
+    linear-gradient(var(--band), var(--band)) center top 13px / 100% 2px no-repeat,
+    linear-gradient(var(--band), var(--band)) center bottom 10px / 100% 2px no-repeat,
     var(--c);
   box-shadow: inset 3px 0 0 rgb(255 255 255 / .12), inset -3px 0 0 rgb(0 0 0 / .2);
   transition: transform .15s ease;
@@ -233,6 +235,9 @@ code, pre, kbd { font-family: var(--mono); font-size: .9em; }
   overflow: hidden; white-space: nowrap; text-overflow: ellipsis;
   text-shadow: 0 1px 1px rgb(0 0 0 / .25);
 }
+.book.light { color: #1e2021; --band: rgb(0 0 0 / .2); }
+.book.light .spine-title { text-shadow: none; }
+.book.light:focus-visible { outline-color: var(--text); }
 .book.long .spine-title { white-space: normal; font-size: 11px; line-height: 1.1; text-align: center; }
 .bookcase-count { text-align: center; margin: 2.75rem 0 0; font: 400 .8rem/1 var(--mono); color: var(--muted); }
 
