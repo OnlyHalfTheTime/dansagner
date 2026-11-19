@@ -21,6 +21,7 @@ featureimage: https://m.media-amazon.com/images/I/513NocLMAKL._SL500_.jpg
 tags:
   - books
 draft: false
+quote: The revolutionary generation believed, to a man, that freedom and reason are the necessary preconditions of truth.
 ---
 
 <!-- Imported from Audible listen history. Last listened 2022-12-23 (Finished). -->

@@ -22,6 +22,7 @@ featureimage: https://m.media-amazon.com/images/I/61igSMjB61L._SL500_.jpg
 tags:
   - books
 draft: false
+quote: To be free, a man must be free of his brothers. That is freedom. This and nothing else.
 ---
 
 <!-- Imported from Audible purchase history. Purchased 2009-04-17; marked Finished in library, finish date unknown. -->

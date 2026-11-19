@@ -21,6 +21,7 @@ featureimage: https://m.media-amazon.com/images/I/618Xn3zqbiL._SL500_.jpg
 tags:
   - books
 draft: false
+quote: It’s no use going back to yesterday, because I was a different person then.
 ---
 
 <!-- Imported from Audible purchase history. Purchased 2010-05-04; marked Finished in library, finish date unknown. -->

@@ -22,11 +22,12 @@ featureimage: https://m.media-amazon.com/images/I/51PpzUbiLeL._SL500_.jpg
 tags:
   - books
 draft: false
+quote: A really efficient totalitarian state would be one in which the all-powerful executive of political bosses and their army of managers control a population of slaves who do not have to be coerced, because they love their servitude.
 ---
 
 <!-- Imported from Audible purchase history. Purchased 2009-12-07; marked Finished in library, finish date unknown. -->
 
-## Imagine 1984.  This is different, but still same.
+## Imagine 1984.  Same, but different. But, still same.
 
 We had to read both BNW and 1984 in High School, and I always liked Huxley's portentous prose more.  Sure yeah, it's a dystopian novel.  But it takes dystopia to utopian places and asks that the reader be careful what he wishes for.
 
