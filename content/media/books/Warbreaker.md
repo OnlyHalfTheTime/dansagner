@@ -27,7 +27,7 @@ quote: My dear, did you just try to prove the existence of God through the use o
 <!-- Imported from Audible listen history. Last listened 2025-08-28 (Finished). -->
 ### Who thought that a novel about *not* having sex with a God-King could be so stimulating?  
 
-If you've read *Elantris*, you'll know what I mean: I imagine that Brandon's wife is very happy. The man is a master at foreplay.  He spends 90% of the book keeping you happy, giving tiny bits of information or lore, slowly doling out secrets and intrigue.  And then, when you just can't take it any more, he hits you with the climax.  It's all very satisfying.
+I imagine that Brandon's wife is very happy. The man is a master at foreplay.  He spends 90% of the book keeping you happy, giving tiny bits of information or lore, slowly doling out secrets and intrigue.  And then, when you just can't take it any more, he hits you with the climax.  It's all very satisfying.
 
 But books aren't sex and the same playbook doesn't always work between stories.  This one felt a bit contrived.  Too clever by half.  The story doesn't follow a main character *really*, it's more of an ensemble cast.  That's fine, I have nothing against that.  But, the character we spend a good portion of the front of the book learning about, and starting to like, spends her days being chided for snooping and her nights silently prostrate in front of a celibate child-god-king-zombie-thing.  
 
